@@ -1,5 +1,5 @@
 import { drizzle, PostgresJsDatabase } from "drizzle-orm/postgres-js";
-// @ts-expect-error
+// @ts-ignore
 import postgres, { Sql } from "postgres";
 
 let client: Sql | undefined;
