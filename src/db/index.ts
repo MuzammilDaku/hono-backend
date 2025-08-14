@@ -1,18 +1,19 @@
-import { drizzle, PostgresJsDatabase } from "drizzle-orm/postgres-js";
-// @ts-ignore
+import { drizzle, type PostgresJsDatabase } from "drizzle-orm/postgres-js";
+// @ts-expect-error
 import postgres, { Sql } from "postgres";
 
 let client: Sql | undefined;
 let db: PostgresJsDatabase | undefined;
 
-export function dbConnection() {
+export function dbConnection(): PostgresJsDatabase {
   if (!process.env.DATABASE_URL) {
     throw new Error("DATABASE_URL is not defined in the environment variables");
   }
 
-  if (!client) {
-    client = postgres(process.env.DATABASE_URL, { ssl: 'require' }); // for production
+  if (!db) {
+    client = postgres(process.env.DATABASE_URL, { ssl: "require" });
     db = drizzle(client!);
+    console.log("📦 Database connection initialized");
   }
 
   return db;
