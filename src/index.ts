@@ -3,9 +3,6 @@ import { dbConnection } from './db'
 import { user } from './db/schemas'
 const app = new Hono()
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
 
 app.post('/api', async (c) => {
  try {
