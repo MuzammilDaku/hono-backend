@@ -24,4 +24,12 @@ app.post('/api', async (c) => {
  }
 })
 
+app.get("/", (c) => {
+  return c.json({
+    DATABASE_URL: process.env.DATABASE_URL || "undefined",
+    envKeys: Object.keys(process.env),
+  });
+});
+
+
 export default app
